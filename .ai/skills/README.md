@@ -70,6 +70,18 @@ Most work starts at **`project-orchestrator`**, which then loads the right speci
 | [`dependency-audit`](dependency-audit/SKILL.md) | Inventory deps; advisories, unused/duplicate/abandoned, license/maintenance risk. |
 | [`environment-audit`](environment-audit/SKILL.md) | Env-var validation, secret handling, prod debug, environment parity. |
 
+## Domain skill packs
+
+Domain-specific skills live in subfolders and have their own index. Load a pack's skills only when working in that domain (and only the relevant ones).
+
+| Pack | Index | Covers |
+|------|-------|--------|
+| **Mobile** (36 skills) | [`mobile/README.md`](mobile/README.md) | Expo vs React Native CLI, foundations, navigation, design system/theme/fonts/icons, state (local/form/shared/server/persisted/navigation), API, auth/authorization, secure storage, notifications, deep linking, media/uploads, location/maps, background tasks, native modules, accessibility, performance, error handling/logging, unit/component/Maestro testing, builds/release, iOS/Android readiness. |
+| **Backend** (30 skills) | [`backend/README.md`](backend/README.md) | Express vs NestJS (no universal default), foundations, API architecture, REST/GraphQL design, contracts, validation, error handling, authentication, authorization (role/permission/ownership/tenant/object-level + negative tests), rate limiting & CAPTCHA abuse prevention, file storage, background jobs/queues/scheduled jobs, realtime, webhooks, integrations, email, security, observability, performance, unit/integration testing, deployment. |
+| **Database** (15 skills) | [`database/README.md`](database/README.md) | Database vs data-layer selection (PostgreSQL/MySQL/MongoDB × Prisma/Drizzle/Mongoose/native), relational & document schema design, migrations, seed data, indexing, transactions, concurrency, security, performance, backup/recovery, data migration. |
+
+Pack skills coordinate with the core skills (e.g. `mobile-performance` ↔ `performance-review`, `backend-security` ↔ `security-review`, `database-selection` ↔ `stack-recommendation`) and with each other (backend ↔ database, mobile ↔ backend API contracts) — see each skill's Related Skills.
+
 ## Selection guidance (by request type)
 
 | Request type | Typical skills (load only these) |
@@ -86,6 +98,9 @@ Most work starts at **`project-orchestrator`**, which then loads the right speci
 | testing audit | testing-strategy → existing-project-audit |
 | deployment | release-planning → environment-audit → github-repository |
 | release | release-planning → final-quality-audit → git-workflow |
+| **mobile project** | mobile-stack-selection → expo/react-native-cli-foundation → mobile-navigation → mobile-design-system → mobile-state-management/server-state → (feature skills as needed) → mobile-unit/component-testing (+ mobile-maestro-e2e for critical flows) → mobile-builds → ios/android-readiness → mobile-release. See [`mobile/README.md`](mobile/README.md). |
+| **backend project** | backend-stack-selection → express/nestjs-foundation → backend-api-architecture → rest/graphql-api-design + api-contracts → backend-validation + backend-error-handling → backend-authentication + backend-authorization (+ role-permission/ownership) → rate-limiting/captcha on public flows → (feature skills as needed) → backend-unit/integration-testing → backend-security → backend-deployment. See [`backend/README.md`](backend/README.md). |
+| **database work** | database-selection → relational/document-schema-design → prisma/drizzle/mongoose skill → database-migrations (+ seed-data, indexing) → transactions/concurrency where invariants demand → database-security + backup-recovery before release. See [`database/README.md`](database/README.md). |
 
 ## Dependency guidance (how skills relate)
 
@@ -94,6 +109,7 @@ Most work starts at **`project-orchestrator`**, which then loads the right speci
 - **Review skills** route depth to specialists: `code-review` → `security-review` / `performance-review`; everything → `ai-output-review`; all reviews aggregate into **`final-quality-audit`**.
 - **Audit skills** (`existing-project-audit`, `dependency-audit`, `environment-audit`) feed selection, migration, and review.
 - **Delivery skills** chain: `git-workflow` → `github-repository` → `release-planning`.
+- **Domain packs** decide their stack first (mobile runtime / backend framework / database + data layer), then load foundations, then feature skills; their quality skills feed the core review skills.
 
 Each skill's own **Related Skills** and **Context Loading Guidance** sections state exactly what it may load and when it should stop.
 
