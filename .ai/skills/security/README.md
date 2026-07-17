@@ -1,8 +1,8 @@
 # `.ai/skills/security/` — Security Skill Pack (Index)
 
-Reusable, tool-neutral skills for assessing and hardening a system's security. Discover them **through this index**, then load only the relevant ones (`../../../system/SKILL_SELECTION_RULES.md`). **Do not load the whole pack** — most tasks need 1–3 skills.
+Reusable, tool-neutral skills for assessing and hardening a system's security. Discover them **through this index**, then load only the relevant ones (`../../system/SKILL_SELECTION_RULES.md`). **Do not load the whole pack** — most tasks need 1–3 skills.
 
-These are the **review/audit lens** on security: they find and prioritize risk, separate **Confirmed vs Potential** findings, **never print secrets**, **never declare a system "secure"**, and route every finding to a fix proven by a **security regression test**. The build-side controls live in the backend/database/devops packs — the security pack verifies them. Threat modeling frames the effort; the specialists cover each surface. Aligns with the core `../../security-review`.
+These are the **review/audit lens** on security: they find and prioritize risk, separate **Confirmed vs Potential** findings, **never print secrets**, **never declare a system "secure"**, and route every finding to a fix proven by a **security regression test**. The build-side controls live in the backend/database/devops packs — the security pack verifies them. Threat modeling frames the effort; the specialists cover each surface. Aligns with the core `../security-review`.
 
 ## Categories
 
@@ -60,15 +60,15 @@ These are the **review/audit lens** on security: they find and prioritize risk, 
 ## Dependency guidance (how security skills relate)
 
 - **`threat-modeling` frames** the effort and routes each threat to a specialist; revisit when boundaries change.
-- **Specialists own surfaces**: identity (`authentication-security`), access (`authorization-security`), and the API/web/mobile/database surfaces — each is the **review lens** on the corresponding build skill (e.g. `authorization-security` ↔ `../../backend/backend-authorization`; `database-security` ↔ `../../database/database-security`; `abuse-prevention` ↔ `../../backend/rate-limiting`).
+- **Specialists own surfaces**: identity (`authentication-security`), access (`authorization-security`), and the API/web/mobile/database surfaces — each is the **review lens** on the corresponding build skill (e.g. `authorization-security` ↔ `../backend/backend-authorization`; `database-security` ↔ `../database/database-security`; `abuse-prevention` ↔ `../backend/rate-limiting`).
 - **Cross-cutting**: `secrets-audit` and `dependency-security` cut across all surfaces; `privacy-review` addresses data handling beyond pure security.
-- **Everything terminates in tests**: every finding routes to `security-regression-testing`, CI-gated via `../../devops/ci-cd`, and incidents (`../../devops/incident-readiness`) feed new tests.
-- **Aggregation**: findings feed the core `../../security-review` and `../../final-quality-audit`; readiness gates at `../../devops/production-readiness`.
+- **Everything terminates in tests**: every finding routes to `security-regression-testing`, CI-gated via `../devops/ci-cd`, and incidents (`../devops/incident-readiness`) feed new tests.
+- **Aggregation**: findings feed the core `../security-review` and `../final-quality-audit`; readiness gates at `../devops/production-readiness`.
 
 ## References
 
-`../../../references/security/` — threat-model templates, per-surface review checklists, scan and security-test patterns (populated as the project develops).
+`../../references/security/` — threat-model templates, per-surface review checklists, scan and security-test patterns (populated as the project develops).
 
 ## Rule: do NOT load the whole pack
 
-Loading every security skill wastes context (`../../../system/TOKEN_OPTIMIZATION_RULES.md`). Select the minimum relevant set via this index, load one stage at a time, and unload on task switch.
+Loading every security skill wastes context (`../../system/TOKEN_OPTIMIZATION_RULES.md`). Select the minimum relevant set via this index, load one stage at a time, and unload on task switch.

@@ -2,7 +2,7 @@
 
 Reusable, tool-neutral skills for choosing, designing, and operating databases (PostgreSQL, MySQL, MongoDB) and their data layers (Prisma, Drizzle, Mongoose, native driver). Discover them **through this index**, then load only the relevant ones (`../../system/SKILL_SELECTION_RULES.md`). **Do not load the whole pack** — most tasks need 1–3 skills.
 
-Database skills keep two decisions separate — the **database** and the **data layer** — and pair them coherently (`../../stack-recommendation`). Relational stores are usually preferred for payments, orders, inventory, reporting, financial data, transactions, and strongly related entities; MongoDB fits genuinely variable documents with embedded access patterns. Constraints enforce invariants, migrations are reviewed code, and an untested backup doesn't count. Nothing is installed or scaffolded before the approval gates (`../../system/QUALITY_GATES.md`).
+Database skills keep two decisions separate — the **database** and the **data layer** — and pair them coherently (`../stack-recommendation`). Relational stores are usually preferred for payments, orders, inventory, reporting, financial data, transactions, and strongly related entities; MongoDB fits genuinely variable documents with embedded access patterns. Constraints enforce invariants, migrations are reviewed code, and an untested backup doesn't count. Nothing is installed or scaffolded before the approval gates (`../../system/QUALITY_GATES.md`).
 
 ## Categories
 

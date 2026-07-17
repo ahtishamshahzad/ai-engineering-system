@@ -7,7 +7,7 @@ description: Use to diagnose and fix measured database performance problems — 
 
 ## Purpose
 
-Find and fix what's actually slow at the database layer: identify the guilty queries with evidence, read their plans, fix shape/index/pooling — and prove the improvement. Pairs with `../backend/backend-performance` (which owns the app layer) and delegates index design to `indexing`.
+Find and fix what's actually slow at the database layer: identify the guilty queries with evidence, read their plans, fix shape/index/pooling — and prove the improvement. Pairs with `../../backend/backend-performance` (which owns the app layer) and delegates index design to `indexing`.
 
 ## When to Use
 
@@ -17,7 +17,7 @@ Find and fix what's actually slow at the database layer: identify the guilty que
 
 ## Inputs
 
-- Evidence: slow-query logs, per-endpoint DB timing (`../backend/backend-observability`), pool metrics.
+- Evidence: slow-query logs, per-endpoint DB timing (`../../backend/backend-observability`), pool metrics.
 - Schema + index state, data volumes; the implicated query code (data layer).
 
 ## Discovery Questions
@@ -31,11 +31,11 @@ Find and fix what's actually slow at the database layer: identify the guilty que
 - **Identify** with evidence: slow-query log / `pg_stat_statements`-class stats / Mongo profiler; rank by aggregate cost.
 - **Read plans** (EXPLAIN ANALYZE / `.explain()`): seq scans on big tables, misestimated rows, sort spills, index misses → shape or index fixes (`indexing` owns index design).
 - **Kill N+1s**: per-item queries from ORM lazy relations (`prisma-relational` include shaping, `drizzle-relational` joins, `mongoose-mongodb` populate policy) — batch, join, or restructure; verify by counting queries per request.
-- **Bound reads**: pagination on every list (`../backend/rest-api-design`), projections over full rows, streaming/chunking for exports (`data-migration`-style batching for bulk work).
+- **Bound reads**: pagination on every list (`../../backend/rest-api-design`), projections over full rows, streaming/chunking for exports (`data-migration`-style batching for bulk work).
 - **Size the pool**: connections = f(instances × pool) vs database limits; diagnose exhaustion vs saturation (waiting-for-connection vs slow-query symptoms differ); transactions holding connections during slow work → `transactions` eviction rules.
 - **Diagnose locks**: blocked-query analysis, long-transaction offenders, hot-row contention → `concurrency`/`transactions` fixes.
-- **Prove it**: before/after timing at representative volume; regression guards (slow-query alerting thresholds — `../backend/backend-observability`).
-- Caching enters only after query fixes, with invalidation design (`../backend/backend-performance` owns the cache decision).
+- **Prove it**: before/after timing at representative volume; regression guards (slow-query alerting thresholds — `../../backend/backend-observability`).
+- Caching enters only after query fixes, with invalidation design (`../../backend/backend-performance` owns the cache decision).
 
 ## Required Workflow
 
@@ -81,7 +81,7 @@ Measured offenders fixed at the responsible layer with plan-verified improvement
 
 ## Related Skills
 
-`indexing`, `transactions`, `concurrency`, `../backend/backend-performance`, `../backend/backend-observability`, `prisma-relational`, `drizzle-relational`, `mongoose-mongodb`, `../../performance-review`.
+`indexing`, `transactions`, `concurrency`, `../../backend/backend-performance`, `../../backend/backend-observability`, `prisma-relational`, `drizzle-relational`, `mongoose-mongodb`, `../../performance-review`.
 
 ## Related Knowledge
 

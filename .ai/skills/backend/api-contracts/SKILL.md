@@ -44,7 +44,7 @@ Make the API contract explicit and enforceable: one source of truth (OpenAPI spe
 ## Decision Rules
 
 - One source of truth; hand-maintained parallel type definitions are drift waiting to happen.
-- Mobile clients lag: deprecation windows must cover store-release cycles (`../mobile/` pack, if present).
+- Mobile clients lag: deprecation windows must cover store-release cycles (`../../mobile/` pack, if present).
 - Contract review is part of code review for any endpoint change (`../../code-review`).
 
 ## Rules

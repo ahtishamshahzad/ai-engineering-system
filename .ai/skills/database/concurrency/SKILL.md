@@ -17,7 +17,7 @@ Make simultaneous access safe: identify where concurrent requests, jobs, and ret
 ## Inputs
 
 - Contended-data inventory: which entities get concurrent writes, from which paths (requests, jobs, webhooks).
-- Data layer capabilities; retry sources (`../backend/background-jobs` at-least-once, user double-clicks, `../backend/webhooks` redelivery).
+- Data layer capabilities; retry sources (`../../backend/background-jobs` at-least-once, user double-clicks, `../../backend/webhooks` redelivery).
 
 ## Discovery Questions
 
@@ -30,12 +30,12 @@ Make simultaneous access safe: identify where concurrent requests, jobs, and ret
 
 - Inventory races: **lost updates** (read-modify-write), **check-then-act** (uniqueness/quotas checked in app code), **double-execution** (retries/redelivery), **state-machine jumps** (parallel status transitions).
 - Prefer **atomic single-statement updates**: `UPDATE ... SET stock = stock - 1 WHERE stock >= 1` / `$inc` with a guard — the database serializes; the app never computes on stale reads for hot counters.
-- Use **optimistic concurrency** (version column / `updatedAt` compare-and-set) for low-contention entities users edit: conflict → bounded retry or user-facing conflict resolution (409 per `../backend/backend-error-handling`).
+- Use **optimistic concurrency** (version column / `updatedAt` compare-and-set) for low-contention entities users edit: conflict → bounded retry or user-facing conflict resolution (409 per `../../backend/backend-error-handling`).
 - Use **pessimistic locking** (`SELECT ... FOR UPDATE` inside a `transactions` boundary) for hot invariants where retry storms would thrash — held briefly, acquired in consistent order (deadlock avoidance).
 - Enforce uniqueness/quotas with **database constraints**, not check-then-insert — handle the violation error as the race signal (`relational-schema-design`, `indexing` unique indexes).
-- Design **idempotency**: keys on unsafe-to-repeat operations (payments, sends — `../backend/rest-api-design`), dedup on webhook/job IDs (`../backend/webhooks`, `../backend/background-jobs`), state checks making re-execution converge.
+- Design **idempotency**: keys on unsafe-to-repeat operations (payments, sends — `../../backend/rest-api-design`), dedup on webhook/job IDs (`../../backend/webhooks`, `../../backend/background-jobs`), state checks making re-execution converge.
 - Gate state machines: transitions as guarded atomic updates (`WHERE status = 'pending'`) — zero-row-updated means the race lost, handle it.
-- Distributed coordination (single scheduled runner, cross-instance locks) → `../backend/scheduled-jobs` mechanisms; don't reinvent with sleeps.
+- Distributed coordination (single scheduled runner, cross-instance locks) → `../../backend/scheduled-jobs` mechanisms; don't reinvent with sleeps.
 
 ## Required Workflow
 
@@ -43,7 +43,7 @@ Make simultaneous access safe: identify where concurrent requests, jobs, and ret
 2. Choose the mechanism per case (atomic / optimistic / pessimistic / constraint / idempotency key).
 3. Define conflict behavior: retry (bounded, jittered), 409 to the user, or converge silently.
 4. Implement; keep lock scopes minimal and ordered.
-5. Test under real concurrency: parallel writers, duplicate deliveries, double-submits (`../backend/backend-integration-testing`).
+5. Test under real concurrency: parallel writers, duplicate deliveries, double-submits (`../../backend/backend-integration-testing`).
 
 ## Decision Rules
 
@@ -81,7 +81,7 @@ A recorded race inventory with a chosen mechanism per case — atomic updates, v
 
 ## Related Skills
 
-`transactions`, `relational-schema-design` (constraints), `indexing` (unique indexes), `../backend/background-jobs`, `../backend/webhooks`, `../backend/scheduled-jobs` (distributed locks), `../backend/backend-error-handling` (409), `../backend/backend-integration-testing`.
+`transactions`, `relational-schema-design` (constraints), `indexing` (unique indexes), `../../backend/background-jobs`, `../../backend/webhooks`, `../../backend/scheduled-jobs` (distributed locks), `../../backend/backend-error-handling` (409), `../../backend/backend-integration-testing`.
 
 ## Related Knowledge
 
@@ -95,7 +95,7 @@ A recorded race inventory with a chosen mechanism per case — atomic updates, v
 
 - **Requires:** contended-entity inventory, retry sources, data-layer capabilities.
 - **Does not require:** uncontended CRUD paths, full schema.
-- **May load:** `transactions` (boundaries), `../backend/background-jobs` (retry semantics).
+- **May load:** `transactions` (boundaries), `../../backend/background-jobs` (retry semantics).
 - **Stop when:** mechanisms, conflict behavior, and parallel tests are recorded.
 
 ## Token Efficiency Guidance

@@ -1,8 +1,8 @@
 # `.ai/skills/testing/` — Testing Skill Pack (Index)
 
-Reusable, tool-neutral skills for choosing and building a project's tests. Discover them **through this index**, then load only the relevant ones (`../../../system/SKILL_SELECTION_RULES.md`). **Do not load the whole pack** — most tasks need 1–3 skills.
+Reusable, tool-neutral skills for choosing and building a project's tests. Discover them **through this index**, then load only the relevant ones (`../../system/SKILL_SELECTION_RULES.md`). **Do not load the whole pack** — most tasks need 1–3 skills.
 
-Testing skills select tools by project need (Playwright for web/dashboard E2E, Maestro for mobile E2E/smoke, Supertest for backend API integration, Testing Library for components, Jest/Vitest for unit/integration logic), cover the **required cases** (happy path, invalid input, error path, authorization denial, regression, critical environment validation), and **never chase a coverage percentage without risk justification**. They refine the core `../../testing-strategy` and coordinate with the backend, devops, and security packs.
+Testing skills select tools by project need (Playwright for web/dashboard E2E, Maestro for mobile E2E/smoke, Supertest for backend API integration, Testing Library for components, Jest/Vitest for unit/integration logic), cover the **required cases** (happy path, invalid input, error path, authorization denial, regression, critical environment validation), and **never chase a coverage percentage without risk justification**. They refine the core `../testing-strategy` and coordinate with the backend, devops, and security packs.
 
 ## Categories
 
@@ -57,16 +57,16 @@ Testing skills select tools by project need (Playwright for web/dashboard E2E, M
 
 ## Dependency guidance (how testing skills relate)
 
-- **Selection first** (`testing-selection`) drives which level skills and tools are used, and feeds `../../devops/ci-cd` job generation.
+- **Selection first** (`testing-selection`) drives which level skills and tools are used, and feeds `../devops/ci-cd` job generation.
 - **Levels layer**: unit → integration/API → E2E (few, critical); `contract-testing` guards cross-deploy boundaries.
 - **Data + environment** (`test-data-management`, `test-environment-management`) underpin every above-unit test; personas enable authorization-denial coverage.
 - **Regression/smoke** protect against reintroduction and bad deploys; `flaky-test-audit` keeps suites trusted; `test-coverage-audit` keeps effort risk-aligned.
-- **Cross-pack**: authorization negatives ↔ `../../backend/backend-authorization`/`../../security/authorization-security`; security negatives ↔ `../../security/security-regression-testing`; CI wiring ↔ `../../devops/ci-cd`.
+- **Cross-pack**: authorization negatives ↔ `../backend/backend-authorization`/`../security/authorization-security`; security negatives ↔ `../security/security-regression-testing`; CI wiring ↔ `../devops/ci-cd`.
 
 ## References
 
-`../../../references/testing/` — tool-fit notes, helper/factory patterns, E2E and coverage playbooks (populated as the project develops).
+`../../references/testing/` — tool-fit notes, helper/factory patterns, E2E and coverage playbooks (populated as the project develops).
 
 ## Rule: do NOT load the whole pack
 
-Loading every testing skill wastes context (`../../../system/TOKEN_OPTIMIZATION_RULES.md`). Select the minimum relevant set via this index, load one stage at a time, and unload on task switch.
+Loading every testing skill wastes context (`../../system/TOKEN_OPTIMIZATION_RULES.md`). Select the minimum relevant set via this index, load one stage at a time, and unload on task switch.

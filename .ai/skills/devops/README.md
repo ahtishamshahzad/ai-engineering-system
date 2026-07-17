@@ -1,6 +1,6 @@
 # `.ai/skills/devops/` — DevOps Skill Pack (Index)
 
-Reusable, tool-neutral skills for repository strategy, build/CI/CD, deployment, and production operations. Discover them **through this index**, then load only the relevant ones (`../../../system/SKILL_SELECTION_RULES.md`). **Do not load the whole pack** — most tasks need 1–3 skills.
+Reusable, tool-neutral skills for repository strategy, build/CI/CD, deployment, and production operations. Discover them **through this index**, then load only the relevant ones (`../../system/SKILL_SELECTION_RULES.md`). **Do not load the whole pack** — most tasks need 1–3 skills.
 
 DevOps skills treat repo shape and deployment targets as **decisions** (not defaults), **generate CI from the selected applications** (never jobs for apps that don't exist), keep one immutable artifact configured per environment, and gate production behind readiness + approval. They **do not scaffold infrastructure**. They coordinate with the backend (deployment), testing (CI jobs, smoke), and security (secrets, dependency, CI security checks) packs.
 
@@ -60,14 +60,14 @@ DevOps skills treat repo shape and deployment targets as **decisions** (not defa
 - **Repo shape decided first** (`repository-strategy`) → `monorepo-selection` → workspace + optional Turborepo foundations.
 - **CI is generated from selected applications + test selection** (`ci-cd`), implemented on the platform (`github-actions`); never invents jobs for absent apps.
 - **Build/config/secrets** (`docker-foundation`, `environment-management`, `secrets-management`) feed the pipeline and deployment; one artifact, config-injected.
-- **Deployment** chains `deployment-selection` → `staging-environment` → `production-readiness` (the release gate), aligned with `../../backend/backend-deployment` and `../../release-planning`.
+- **Deployment** chains `deployment-selection` → `staging-environment` → `production-readiness` (the release gate), aligned with `../backend/backend-deployment` and `../release-planning`.
 - **Operations** run continuously: `monitoring-logging` → `incident-readiness`, with `rollback-planning` as the deploy-reversal mechanism.
-- **Cross-pack**: security checks in CI ↔ `../../security/dependency-security`/`secrets-audit`; smoke ↔ `../../testing/smoke-testing`; migrations/backups ↔ `../../database/`.
+- **Cross-pack**: security checks in CI ↔ `../security/dependency-security`/`secrets-audit`; smoke ↔ `../testing/smoke-testing`; migrations/backups ↔ `../database/`.
 
 ## References
 
-`../../../references/devops/` — repo/monorepo notes, Dockerfile and workflow patterns, config templates, deployment comparisons, runbooks and readiness checklists (populated as the project develops).
+`../../references/devops/` — repo/monorepo notes, Dockerfile and workflow patterns, config templates, deployment comparisons, runbooks and readiness checklists (populated as the project develops).
 
 ## Rule: do NOT load the whole pack
 
-Loading every devops skill wastes context (`../../../system/TOKEN_OPTIMIZATION_RULES.md`). Select the minimum relevant set via this index, load one stage at a time, and unload on task switch.
+Loading every devops skill wastes context (`../../system/TOKEN_OPTIMIZATION_RULES.md`). Select the minimum relevant set via this index, load one stage at a time, and unload on task switch.

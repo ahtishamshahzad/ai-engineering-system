@@ -35,7 +35,7 @@ Express the approved relational schema in Drizzle's TypeScript table definitions
   - prepared statements for hot repeated queries;
   - `db.transaction` for multi-write invariants (`transactions` owns boundaries);
   - one pooled client, sized per deployment (`database-performance`).
-- Keep the boundary clean: inferred row types (`$inferSelect`) are data-layer types; map to domain/DTO shapes at the service boundary (`../backend/backend-api-architecture`).
+- Keep the boundary clean: inferred row types (`$inferSelect`) are data-layer types; map to domain/DTO shapes at the service boundary (`../../backend/backend-api-architecture`).
 - Use `sql` template escape hatches parameterized-only (`database-security`).
 
 ## Required Workflow
@@ -82,7 +82,7 @@ The approved schema fully expressed in reviewed Drizzle definitions and migratio
 
 ## Related Skills
 
-`database-selection`, `relational-schema-design`, `database-migrations`, `transactions`, `indexing`, `database-performance`, `database-security`, `seed-data`, `../backend/backend-api-architecture`.
+`database-selection`, `relational-schema-design`, `database-migrations`, `transactions`, `indexing`, `database-performance`, `database-security`, `seed-data`, `../../backend/backend-api-architecture`.
 
 ## Related Knowledge
 

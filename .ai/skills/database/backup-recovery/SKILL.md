@@ -34,7 +34,7 @@ Make data loss survivable, provably: recovery objectives set by the business, ba
 - Cover operator error explicitly: PITR to just-before-the-mistake; **pre-operation snapshots** as a standard step for `data-migration`/destructive `database-migrations`.
 - Write the **restore runbook**: exact steps, access needed, decision points (restore-in-place vs parallel-and-cutover, partial-table extraction), verification steps — executable by the on-call human, not just its author.
 - **Drill restores on a schedule**: full restore to a scratch environment, timed against RTO, data verified (counts/spot checks); every drill recorded; a failed drill is a production incident in rehearsal — fix it.
-- Monitor the pipeline: backup success/failure and *staleness* alerts (`../backend/backend-observability`) — silent backup death is the classic failure.
+- Monitor the pipeline: backup success/failure and *staleness* alerts (`../../backend/backend-observability`) — silent backup death is the classic failure.
 - Align PII retention/deletion with backups (`database-security`): deleted-user data in year-old backups is a recorded, compliance-checked policy, not a surprise.
 
 ## Required Workflow
@@ -83,7 +83,7 @@ Recorded recovery objectives met by an automated, off-site, encrypted backup sch
 
 ## Related Skills
 
-`database-security`, `data-migration` (pre-op snapshots), `database-migrations`, `../backend/backend-deployment`, `../backend/backend-observability`, `../../release-planning` (readiness gate).
+`database-security`, `data-migration` (pre-op snapshots), `database-migrations`, `../../backend/backend-deployment`, `../../backend/backend-observability`, `../../release-planning` (readiness gate).
 
 ## Related Knowledge
 

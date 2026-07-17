@@ -49,7 +49,7 @@ Integrate external services (payments, messaging, AI, CRM, etc.) so their failur
 - Non-idempotent external calls (charges, sends) retry only with provider idempotency keys — otherwise never blind-retry.
 - Slow-but-optional providers leave the request path (`background-jobs`).
 - Critical-path providers need a recorded outage behavior (fail closed, degrade, queue) — "we go down too" is a decision to make consciously, not discover.
-- New providers are stack/vendor decisions — user approval (`../../stack-recommendation`), including data-sharing implications (`../../system/SECURITY_RULES.md`).
+- New providers are stack/vendor decisions — user approval (`../../stack-recommendation`), including data-sharing implications (`../../../system/SECURITY_RULES.md`).
 
 ## Rules
 

@@ -7,7 +7,7 @@ description: Use to plan database security — least-privilege credentials, netw
 
 ## Purpose
 
-Protect the data store itself: who can connect, what the app account can do, how injection is made impossible, how sensitive data is classified and encrypted, and how access is audited. Complements `../backend/backend-security` (app layer) and feeds `../../security-review`.
+Protect the data store itself: who can connect, what the app account can do, how injection is made impossible, how sensitive data is classified and encrypted, and how access is audited. Complements `../../backend/backend-security` (app layer) and feeds `../../security-review`.
 
 ## When to Use
 
@@ -16,7 +16,7 @@ Protect the data store itself: who can connect, what the app account can do, how
 
 ## Inputs
 
-- Data-sensitivity map (`../backend/backend-security`), tenancy model (`../backend/ownership-authorization`).
+- Data-sensitivity map (`../../backend/backend-security`), tenancy model (`../../backend/ownership-authorization`).
 - Deployment topology (who/what can reach the database), compliance constraints.
 
 ## Discovery Questions
@@ -29,10 +29,10 @@ Protect the data store itself: who can connect, what the app account can do, how
 
 - **Least-privilege accounts**: the app's runtime account gets CRUD on its schema only — no DDL, no superuser (migrations run under a separate, deploy-scoped account — `database-migrations`); humans get personal, audited, read-limited access; analytics gets replicas/views, not the primary's write account.
 - **Network isolation**: private network/VPC only, no public listener; TLS on connections; access from production paths only — dev machines don't hold prod credentials.
-- **Credentials**: secret store/env per `../backend/backend-security`, rotated, never in code/logs/dumps; per-environment separation absolute.
-- **Injection prevention**: parameterized queries *only* — ORMs default to this, raw escape hatches (`$queryRaw`, `sql` templates, Mongo operator injection via unvalidated objects) hold the discipline (`../backend/backend-validation` blocks operator-shaped input like `{$gt: ''}`).
-- **Encryption**: at rest (storage/provider level), in transit (TLS), and **application-level encryption for the truly sensitive fields** (tokens, secrets users store with you) — with key management stated; hashing where reversibility isn't needed (`../backend/backend-authentication` credentials).
-- **PII discipline**: classify columns/fields; minimize collection; define retention + deletion paths (account-deletion actually deletes/anonymizes — including backups policy awareness `backup-recovery`); PII never in logs (`../backend/backend-observability`) or dev seeds (`seed-data`).
+- **Credentials**: secret store/env per `../../backend/backend-security`, rotated, never in code/logs/dumps; per-environment separation absolute.
+- **Injection prevention**: parameterized queries *only* — ORMs default to this, raw escape hatches (`$queryRaw`, `sql` templates, Mongo operator injection via unvalidated objects) hold the discipline (`../../backend/backend-validation` blocks operator-shaped input like `{$gt: ''}`).
+- **Encryption**: at rest (storage/provider level), in transit (TLS), and **application-level encryption for the truly sensitive fields** (tokens, secrets users store with you) — with key management stated; hashing where reversibility isn't needed (`../../backend/backend-authentication` credentials).
+- **PII discipline**: classify columns/fields; minimize collection; define retention + deletion paths (account-deletion actually deletes/anonymizes — including backups policy awareness `backup-recovery`); PII never in logs (`../../backend/backend-observability`) or dev seeds (`seed-data`).
 - **Tenant isolation depth**: scoped queries are the floor (`ownership-authorization`); evaluate row-level security or per-tenant schemas where the risk profile demands database-enforced isolation — recorded decision either way.
 - **Auditing**: who connected, admin/DDL actions, bulk exports — logged and reviewable.
 
@@ -84,7 +84,7 @@ A recorded database-security posture — least-privilege access, isolated networ
 
 ## Related Skills
 
-`../backend/backend-security`, `../../security-review`, `../backend/ownership-authorization`, `../backend/backend-validation`, `../backend/backend-authentication`, `backup-recovery`, `seed-data`, `database-migrations`, `../../environment-audit`.
+`../../backend/backend-security`, `../../security-review`, `../../backend/ownership-authorization`, `../../backend/backend-validation`, `../../backend/backend-authentication`, `backup-recovery`, `seed-data`, `database-migrations`, `../../environment-audit`.
 
 ## Related Knowledge
 

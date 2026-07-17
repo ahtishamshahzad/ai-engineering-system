@@ -18,7 +18,7 @@ Make **two separate decisions**, in order: (1) the **database** — PostgreSQL, 
 ## Inputs
 
 - Requirement baseline: entities, relations, integrity needs, reporting needs, expected access patterns.
-- Existing infrastructure/team experience (`../existing-project-audit` findings where applicable).
+- Existing infrastructure/team experience (`../../existing-project-audit` findings where applicable).
 
 ## Discovery Questions
 
@@ -82,7 +82,7 @@ Two recorded, separately justified decisions — database and data layer — coh
 
 ## Related Skills
 
-`../../stack-recommendation`, `relational-schema-design`, `document-schema-design`, `prisma-relational`, `drizzle-relational`, `mongoose-mongodb`, `database-migrations`, `backup-recovery`, `../backend/existing-backend-audit`.
+`../../stack-recommendation`, `relational-schema-design`, `document-schema-design`, `prisma-relational`, `drizzle-relational`, `mongoose-mongodb`, `database-migrations`, `backup-recovery`, `../../backend/existing-backend-audit`.
 
 ## Related Knowledge
 

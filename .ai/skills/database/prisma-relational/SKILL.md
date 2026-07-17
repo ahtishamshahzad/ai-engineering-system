@@ -22,7 +22,7 @@ Express the approved relational schema through Prisma and use its client well: s
 ## Discovery Questions
 
 - Does the schema use features Prisma models natively (enums, composite uniques, referential actions) vs ones needing raw SQL in migrations (partial indexes, CHECK constraints, triggers)?
-- Where do generated types flow (service layer boundaries — `../backend/backend-api-architecture` says entities ≠ DTOs)?
+- Where do generated types flow (service layer boundaries — `../../backend/backend-api-architecture` says entities ≠ DTOs)?
 - What query hot paths exist (drives select/include discipline)?
 
 ## Responsibilities
@@ -30,7 +30,7 @@ Express the approved relational schema through Prisma and use its client well: s
 - Express the design in `schema.prisma`: types, relations with explicit referential actions (`onDelete`), `@@unique`/`@@index`, enums — mapping every constraint the design demands; what Prisma's DSL can't express (CHECKs, partial indexes) goes into migration SQL deliberately, not dropped.
 - Own the **migration workflow** with `database-migrations`: `migrate dev` in development, generated SQL **reviewed like code**, `migrate deploy` in environments; no `db push` beyond throwaway prototyping; drift detection in CI.
 - Set **client usage patterns**:
-  - `select`/`include` scoped to need — no default full-entity fetches leaking through APIs (`../backend/rest-api-design` payload discipline);
+  - `select`/`include` scoped to need — no default full-entity fetches leaking through APIs (`../../backend/rest-api-design` payload discipline);
   - relation loading strategy per hot path — avoid N+1 (batched `include`, or restructured queries);
   - `$transaction` for multi-write invariants (`transactions` owns the boundaries);
   - pagination via cursor patterns on stable keys;
@@ -82,7 +82,7 @@ The approved schema fully expressed through Prisma (with deliberate raw-SQL supp
 
 ## Related Skills
 
-`database-selection`, `relational-schema-design`, `database-migrations`, `transactions`, `indexing`, `database-performance`, `database-security`, `seed-data`, `../backend/backend-api-architecture`.
+`database-selection`, `relational-schema-design`, `database-migrations`, `transactions`, `indexing`, `database-performance`, `database-security`, `seed-data`, `../../backend/backend-api-architecture`.
 
 ## Related Knowledge
 

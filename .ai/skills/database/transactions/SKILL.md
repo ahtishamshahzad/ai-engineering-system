@@ -18,7 +18,7 @@ Make multi-write invariants explicitly atomic: identify them, wrap them in delib
 ## Inputs
 
 - The domain invariants: which writes must succeed or fail together.
-- Data layer transaction API (`prisma-relational` `$transaction` / `drizzle-relational` `db.transaction` / `mongoose-mongodb` sessions), architecture layer map (`../backend/backend-api-architecture`).
+- Data layer transaction API (`prisma-relational` `$transaction` / `drizzle-relational` `db.transaction` / `mongoose-mongodb` sessions), architecture layer map (`../../backend/backend-api-architecture`).
 
 ## Discovery Questions
 
@@ -31,10 +31,10 @@ Make multi-write invariants explicitly atomic: identify them, wrap them in delib
 - Build the **invariant inventory**: every multi-write operation, its atomicity requirement, and its failure semantics.
 - Place boundaries in the **service layer** (one transaction per use-case operation), passed explicitly through the data layer — not implicit per-query autocommit sprinkled with hope, not controller-level try/catch.
 - Keep transactions **short and pure**: reads needed for the decision, then writes, then commit. **No external calls, queue publishes, emails, or slow computation inside** — a transaction holding a connection during a 3s HTTP call is a pool outage in waiting (`database-performance`).
-- Couple side effects to commit with the **outbox pattern** (event/job row written in the same transaction; relay publishes after commit — `../backend/background-jobs`) or enqueue-after-commit with the miss-risk recorded.
+- Couple side effects to commit with the **outbox pattern** (event/job row written in the same transaction; relay publishes after commit — `../../backend/background-jobs`) or enqueue-after-commit with the miss-risk recorded.
 - Choose **isolation deliberately**: default READ COMMITTED semantics vs stronger (REPEATABLE READ/SERIALIZABLE) where invariants demand (balance checks, uniqueness-ish decisions); serialization failures and deadlocks get **bounded retries with jitter** at the service boundary — the operation must be idempotent-in-effect to retry (`concurrency`).
 - MongoDB: single-document atomicity first (`document-schema-design` embeds); multi-document sessions/transactions only for flagged invariants — routine need signals wrong store or wrong shape.
-- Test the boundary: mid-operation failure rolls back everything; partial-commit states unrepresentable (`../backend/backend-integration-testing`).
+- Test the boundary: mid-operation failure rolls back everything; partial-commit states unrepresentable (`../../backend/backend-integration-testing`).
 
 ## Required Workflow
 
@@ -54,7 +54,7 @@ Make multi-write invariants explicitly atomic: identify them, wrap them in delib
 ## Rules
 
 - Boundaries are visible in code (named service methods), not spread across layers.
-- Every retry-on-conflict path is bounded and logged (`../backend/backend-observability`).
+- Every retry-on-conflict path is bounded and logged (`../../backend/backend-observability`).
 - No transaction spans a user interaction or awaits an external service.
 
 ## Anti-Patterns
@@ -79,7 +79,7 @@ Every multi-write invariant runs inside a deliberate, short, service-layer trans
 
 ## Related Skills
 
-`concurrency`, `../backend/background-jobs` (outbox relay), `../backend/backend-api-architecture`, `relational-schema-design`, `document-schema-design`, `database-performance` (connection hold), `../backend/backend-integration-testing`.
+`concurrency`, `../../backend/background-jobs` (outbox relay), `../../backend/backend-api-architecture`, `relational-schema-design`, `document-schema-design`, `database-performance` (connection hold), `../../backend/backend-integration-testing`.
 
 ## Related Knowledge
 
@@ -93,7 +93,7 @@ Every multi-write invariant runs inside a deliberate, short, service-layer trans
 
 - **Requires:** invariant inventory, data-layer transaction API, layer map.
 - **Does not require:** unrelated read paths, full schema.
-- **May load:** `concurrency` (contention), `../backend/background-jobs` (outbox).
+- **May load:** `concurrency` (contention), `../../backend/background-jobs` (outbox).
 - **Stop when:** boundaries, isolation, retries, and tests are recorded.
 
 ## Token Efficiency Guidance
