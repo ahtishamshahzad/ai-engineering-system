@@ -85,6 +85,8 @@ Domain-specific skills live in subfolders and have their own index. Load a pack'
 
 Pack skills coordinate with the core skills (e.g. `mobile-performance` ↔ `performance-review`, `backend-security` ↔ `security-review`, `database-selection` ↔ `stack-recommendation`, `testing-selection` refines `testing-strategy`, security-pack skills are the review lens on the backend/database build skills) and with each other (backend ↔ database ↔ devops ↔ testing ↔ security; mobile ↔ backend API contracts) — see each skill's Related Skills.
 
+Mobile skills coordinate with the core skills (e.g. `mobile-performance` ↔ `performance-review`, `mobile-release` ↔ `release-planning`) — see each mobile skill's Related Skills.
+
 ## Selection guidance (by request type)
 
 | Request type | Typical skills (load only these) |
