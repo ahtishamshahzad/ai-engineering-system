@@ -17,7 +17,7 @@ Define what data environments start with and how it gets there: required referen
 ## Inputs
 
 - Schema/data layer (seeds speak its language — `prisma-relational`/`drizzle-relational`/`mongoose-mongodb`).
-- Domain's reference data (roles, plans, statuses, country lists…) and test personas (`../backend/backend-integration-testing`).
+- Domain's reference data (roles, plans, statuses, country lists…) and test personas (`../../backend/backend-integration-testing`).
 
 ## Discovery Questions
 
@@ -29,7 +29,7 @@ Define what data environments start with and how it gets there: required referen
 
 - Separate the three classes and their pipelines:
   - **Reference data** (roles, permission definitions, plans, enum-like tables): required everywhere including production; **idempotent upserts** keyed on stable natural keys; versioned in the repo; changes reviewed like migrations (often *run* as data migrations — coordinate with `database-migrations` ordering).
-  - **Development fixtures**: realistic volume and variety (enough rows to expose pagination/perf issues), personas for every role/tenant case (`../backend/ownership-authorization` testing needs), generated via **factories** with a fixed random seed for reproducibility; never runnable against production.
+  - **Development fixtures**: realistic volume and variety (enough rows to expose pagination/perf issues), personas for every role/tenant case (`../../backend/ownership-authorization` testing needs), generated via **factories** with a fixed random seed for reproducibility; never runnable against production.
   - **Test seeds**: minimal, deterministic, per-test-owned via factories (`backend-integration-testing` isolation) — no shared mutable "test database dump."
 - Make all seeding **idempotent and re-runnable**: upsert by natural key; running twice changes nothing.
 - Enforce environment guards in the seed runner itself (refuses production unless running the reference-data set; no fixture path can reach prod credentials).
@@ -80,7 +80,7 @@ A recorded, implemented seed strategy — idempotent reviewed reference data thr
 
 ## Related Skills
 
-`database-migrations`, `data-migration`, `../backend/backend-integration-testing`, `../backend/role-permission-design` (role/permission reference rows), `database-security`, `prisma-relational`, `drizzle-relational`, `mongoose-mongodb`.
+`database-migrations`, `data-migration`, `../../backend/backend-integration-testing`, `../../backend/role-permission-design` (role/permission reference rows), `database-security`, `prisma-relational`, `drizzle-relational`, `mongoose-mongodb`.
 
 ## Related Knowledge
 
@@ -94,7 +94,7 @@ A recorded, implemented seed strategy — idempotent reviewed reference data thr
 
 - **Requires:** schema, reference-data inventory, test personas, environment list.
 - **Does not require:** application feature code, production data.
-- **May load:** `../backend/backend-integration-testing` (isolation), `database-migrations` (ordering).
+- **May load:** `../../backend/backend-integration-testing` (isolation), `database-migrations` (ordering).
 - **Stop when:** the three pipelines are implemented/recorded and re-run-safe.
 
 ## Token Efficiency Guidance

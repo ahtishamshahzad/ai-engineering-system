@@ -19,7 +19,7 @@ Design MongoDB collections around **how the data is read and written**: embed wh
 
 - Domain model + the **access patterns** (which data is read/written together, how often, by what key).
 - Cardinalities and growth expectations per relationship.
-- Tenancy/ownership model (`../backend/ownership-authorization`).
+- Tenancy/ownership model (`../../backend/ownership-authorization`).
 
 ## Discovery Questions
 
@@ -85,7 +85,7 @@ A recorded document design — per-relationship embed/reference decisions tied t
 
 ## Related Skills
 
-`database-selection`, `mongoose-mongodb`, `indexing`, `transactions`, `concurrency`, `database-security`, `../backend/ownership-authorization`, `data-migration` (reshaping later).
+`database-selection`, `mongoose-mongodb`, `indexing`, `transactions`, `concurrency`, `database-security`, `../../backend/ownership-authorization`, `data-migration` (reshaping later).
 
 ## Related Knowledge
 

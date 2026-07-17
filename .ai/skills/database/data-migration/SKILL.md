@@ -35,7 +35,7 @@ Move or transform existing data safely: backfills that accompany schema change, 
 - Handle **live traffic**: expand schema first (`database-migrations`), then either dual-write (app writes old+new during backfill) or ordered backfill-then-switch; reads cut over only after verification; contract last.
 - **Verify**: row/document counts per cohort, checksums or field-level sampling, application-level invariant checks (`transactions`-era invariants still hold); verification is a step with pass/fail criteria, not a vibe.
 - Plan **rollback**: backup/snapshot point (`backup-recovery`) taken before mutation; reversible switch (reads back to old path) until contract; after contract, roll-forward-only — stated in advance.
-- Log progress + errors per batch (`../backend/backend-observability`); quarantine-and-continue vs halt-on-error ruled per error class.
+- Log progress + errors per batch (`../../backend/backend-observability`); quarantine-and-continue vs halt-on-error ruled per error class.
 - Rehearse on a production-scale copy: timing, locks, error rates — a migration first run in production is a gamble, not a plan.
 
 ## Required Workflow
@@ -84,7 +84,7 @@ A rehearsed, batched, resumable, idempotent migration with a written transformat
 
 ## Related Skills
 
-`database-migrations`, `backup-recovery`, `../../migration-planning`, `transactions`, `concurrency`, `database-performance`, `../backend/backend-observability`, `seed-data`.
+`database-migrations`, `backup-recovery`, `../../migration-planning`, `transactions`, `concurrency`, `database-performance`, `../../backend/backend-observability`, `seed-data`.
 
 ## Related Knowledge
 

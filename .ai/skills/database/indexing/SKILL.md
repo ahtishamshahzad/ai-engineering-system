@@ -16,13 +16,13 @@ Derive indexes from the queries the system actually runs: the right columns in t
 
 ## Inputs
 
-- Query inventory: filters, sorts, joins per endpoint/job (from `../backend/rest-api-design` list endpoints, `../backend/backend-performance` findings).
+- Query inventory: filters, sorts, joins per endpoint/job (from `../../backend/rest-api-design` list endpoints, `../../backend/backend-performance` findings).
 - Schema + data layer (`prisma-relational`/`drizzle-relational`/`mongoose-mongodb` declare them), write-volume profile.
 
 ## Discovery Questions
 
 - What are the top queries by frequency and by cost — their WHERE/ORDER BY/JOIN shapes?
-- Which are tenant-scoped (tenant key leads composites — every scoped query filters it, `../backend/ownership-authorization`)?
+- Which are tenant-scoped (tenant key leads composites — every scoped query filters it, `../../backend/ownership-authorization`)?
 - What's the read/write ratio per table — how much index tax can hot-write tables afford?
 
 ## Responsibilities
@@ -81,7 +81,7 @@ A recorded query → index map with deliberately ordered, plan-verified indexes 
 
 ## Related Skills
 
-`database-performance`, `relational-schema-design`, `document-schema-design`, `database-migrations`, `concurrency` (unique constraints), `prisma-relational`, `drizzle-relational`, `mongoose-mongodb`, `../backend/backend-performance`.
+`database-performance`, `relational-schema-design`, `document-schema-design`, `database-migrations`, `concurrency` (unique constraints), `prisma-relational`, `drizzle-relational`, `mongoose-mongodb`, `../../backend/backend-performance`.
 
 ## Related Knowledge
 

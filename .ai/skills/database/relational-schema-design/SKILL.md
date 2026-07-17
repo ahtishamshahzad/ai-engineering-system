@@ -19,7 +19,7 @@ Turn the domain model into a relational schema whose **constraints enforce the b
 
 - Domain model: entities, relationships, invariants, lifecycle rules.
 - Access patterns + reporting needs (shape indexing later — `indexing`).
-- Tenancy/ownership model (`../backend/ownership-authorization`).
+- Tenancy/ownership model (`../../backend/ownership-authorization`).
 
 ## Discovery Questions
 
@@ -29,9 +29,9 @@ Turn the domain model into a relational schema whose **constraints enforce the b
 
 ## Responsibilities
 
-- Model tables per entity; **primary keys** deliberate (auto-increment vs UUID — external exposure and ordering trade-offs recorded; non-guessable IDs where enumeration matters, cf. `../backend/ownership-authorization`).
+- Model tables per entity; **primary keys** deliberate (auto-increment vs UUID — external exposure and ordering trade-offs recorded; non-guessable IDs where enumeration matters, cf. `../../backend/ownership-authorization`).
 - Model relationships explicitly: FKs for 1:N, join tables for M:N (with their own constraints), true 1:1 justified; **every FK with an `ON DELETE` decision** (cascade/restrict/set null — per relationship, not default).
-- Enforce integrity in-schema: `NOT NULL` by default, `UNIQUE` for natural keys, `CHECK` for ranges/enums, FK constraints always on — "the app validates it" is not enforcement (`../backend/backend-validation` is the UX layer; the schema is the floor).
+- Enforce integrity in-schema: `NOT NULL` by default, `UNIQUE` for natural keys, `CHECK` for ranges/enums, FK constraints always on — "the app validates it" is not enforcement (`../../backend/backend-validation` is the UX layer; the schema is the floor).
 - Choose types precisely: **integer minor units or `DECIMAL` for money (never float)**, `timestamptz`/UTC for time, native enums or lookup tables (recorded choice), text with sensible constraints.
 - Normalize to ~3NF by default; **denormalize only for a measured/known access pattern, recorded with its consistency-maintenance story**.
 - Set conventions once: naming (snake_case tables/columns, consistent id/created_at/updated_at), soft-delete pattern (and its unique-index interaction), audit/history tables where the domain demands them.
@@ -84,7 +84,7 @@ A recorded relational schema — tables, keys, constrained relationships, precis
 
 ## Related Skills
 
-`database-selection`, `prisma-relational`, `drizzle-relational`, `database-migrations`, `indexing`, `transactions`, `concurrency`, `database-security`, `../backend/ownership-authorization`.
+`database-selection`, `prisma-relational`, `drizzle-relational`, `database-migrations`, `indexing`, `transactions`, `concurrency`, `database-security`, `../../backend/ownership-authorization`.
 
 ## Related Knowledge
 

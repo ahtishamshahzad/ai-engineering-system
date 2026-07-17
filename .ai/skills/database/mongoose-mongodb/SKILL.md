@@ -31,7 +31,7 @@ Express the approved document design (`document-schema-design`) through Mongoose
 - Model embed vs reference exactly as designed: subdocument schemas for embeds; `ObjectId` refs + deliberate `populate` policy for references (populate is a query per path — hot paths get explicit shaping or aggregation instead).
 - Declare **indexes in the schema** to match `indexing`'s plan — but control build timing in production (autoIndex off; builds via migration/ops step — `database-migrations` for index rollouts on big collections).
 - Set query discipline: `.lean()` for read-only paths (hydration costs), projections scoped to need, cursor pagination on stable keys, `maxTimeMS` on heavy queries.
-- Keep **middleware (hooks) thin**: derived-field maintenance, timestamps — not business rules (those live in services, `../backend/backend-api-architecture`); document every hook (hidden write amplification).
+- Keep **middleware (hooks) thin**: derived-field maintenance, timestamps — not business rules (those live in services, `../../backend/backend-api-architecture`); document every hook (hidden write amplification).
 - Use **sessions/transactions** only for the flagged cross-document invariants; single-document atomicity is the default model.
 - Enforce the duplication ledger: propagation updates implemented where the design assigned ownership.
 - Version/migrate shapes deliberately: schema changes to live collections go through `data-migration` (backfills), not silent shape drift.

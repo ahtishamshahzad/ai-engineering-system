@@ -17,7 +17,7 @@ Evolve the schema safely: every change a versioned, reviewed, immutable migratio
 ## Inputs
 
 - Schema change intent (`relational-schema-design` / `document-schema-design` output).
-- Tooling from the data layer (`prisma-relational` / `drizzle-relational` / `mongoose-mongodb` index builds), deploy flow (`../backend/backend-deployment`).
+- Tooling from the data layer (`prisma-relational` / `drizzle-relational` / `mongoose-mongodb` index builds), deploy flow (`../../backend/backend-deployment`).
 
 ## Discovery Questions
 
@@ -57,7 +57,7 @@ Evolve the schema safely: every change a versioned, reviewed, immutable migratio
 
 - No schema change outside a migration file; no editing applied migrations.
 - Every migration reviewed (locks, data safety) before merge (`../../code-review`).
-- Destructive migrations name the approval that authorized them (`../../system/QUALITY_GATES.md`).
+- Destructive migrations name the approval that authorized them (`../../../system/QUALITY_GATES.md`).
 
 ## Anti-Patterns
 
@@ -82,7 +82,7 @@ A reviewed, versioned migration path for the change — safely ordered against d
 
 ## Related Skills
 
-`data-migration`, `seed-data`, `relational-schema-design`, `document-schema-design`, `prisma-relational`, `drizzle-relational`, `mongoose-mongodb`, `../backend/backend-deployment`, `backup-recovery`, `../../migration-planning`.
+`data-migration`, `seed-data`, `relational-schema-design`, `document-schema-design`, `prisma-relational`, `drizzle-relational`, `mongoose-mongodb`, `../../backend/backend-deployment`, `backup-recovery`, `../../migration-planning`.
 
 ## Related Knowledge
 
@@ -96,7 +96,7 @@ A reviewed, versioned migration path for the change — safely ordered against d
 
 - **Requires:** the schema change intent, data size, deploy flow, downtime tolerance.
 - **Does not require:** application feature code, full schema history.
-- **May load:** `data-migration` (backfill leg), `../backend/backend-deployment` (ordering).
+- **May load:** `data-migration` (backfill leg), `../../backend/backend-deployment` (ordering).
 - **Stop when:** the migration files + sequencing + ruling are recorded.
 
 ## Token Efficiency Guidance

@@ -34,7 +34,7 @@ Get the backend into environments safely and repeatably: chosen target, discipli
 - **Rollout**: readiness-gated (only healthy instances get traffic — `backend-observability` checks), rolling/blue-green per target capability; graceful shutdown (drain requests, finish/release jobs — `queues`).
 - **Async surfaces**: workers and schedulers as separately deployable processes; deploy order vs migrations considered for them too.
 - **Rollback**: previous artifact redeployable in minutes; know which migrations are roll-forward-only and what that means for reverting (usually: fix forward for schema, roll back code).
-- **Pipeline**: CI gates (tests, `../../security-review` hooks) before deploy; deploy actions logged; production deploys approved per `../../system/QUALITY_GATES.md`.
+- **Pipeline**: CI gates (tests, `../../security-review` hooks) before deploy; deploy actions logged; production deploys approved per `../../../system/QUALITY_GATES.md`.
 
 ## Required Workflow
 
